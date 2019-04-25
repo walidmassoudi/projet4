@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" style="background-color:rgb(192, 192, 211);">
+        <form [formGroup]="formAjout">
+            <input type="text" formControlName="Taskname"  placeholder="Taskname" /><br>
+            <div *ngIf="formAjout.controls.Taskname.hasError('required')" style="color:red">Taskname is required</div>
+            <div *ngIf="formAjout.controls.Taskname.hasError('minlength')" style="color:red">Taskname minimum 8 carateres</div>
+            
+            <input type="date" formControlName="Birdhdate" placeholder="Birdhdate" value ="" id=""/><br>
+            <input type="text" formControlName="Description" placeholder="Description" value ="" id=""/><br>
+            <button (click)="add()" style="background-color:rgb(8, 221, 19);">AddTask</button>
+            </form>
+            TaskName: {{formAjout.value.Taskname}}<br>
+            Birdhdate: {{formAjout.value.Birdhdate}}<br>
+            Description: {{formAjout.value.Description}}    </div>
+    <div class="col-md-6" style="background-color:rgb(197, 184, 182);">
+        <table>
+            <tr>
+              <td></td>
+              <td id="td1"> Taskname </td>
+              <td id="td1"> Birdhdate </td>
+              <td id="td1"> Description </td>
+            </tr>
+            <tr *ngFor="let todo of tableTodo; let i = index;">
+              
+              <td id="td1"> {{todo.Taskname}} </td>
+              <td id="td1"> {{todo.Birdhdate}} </td>
+              <td id="td1"> {{todo.Description}} </td>
+              <td id="td1">
+                <button (click)="delete(i)" style="background-color:rgb(221, 93, 8);">Delete</button>
+                <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" (click)="getTask(todo, i)">Modifier</button>
+              </td>
+            </tr>
+          </table>    </div>
+  </div>
+    <div class="row" style="background-color:rgb(108, 108, 139);">
+      <p> connect users </p>
+    </div>
+    <div class="row">
+      <div class="col-md-12" style="background-color:rgb(108, 108, 139);">
+        <app-users></app-users>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">TASK</h4>
+          </div>
+          <div class="modal-body">
+              <form [formGroup]="formModif">
+                  <input type="text" formControlName="Taskname"  placeholder="Taskname" value ="" id="" /><br>
+                  <input type="date" formControlName="Birdhdate" placeholder="Birdhdate" value ="" id=""/><br>
+                  <input type="text" formControlName="Description" placeholder="Description" value ="" id=""/><br>
+                  </form>
+          </div>
+          <div class="modal-footer">
+            <button (click)="modifier()" class="btn btn-default" data-dismiss="modal">Modifier</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>

@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <td></td>
+    <td id="td1"> Taskname </td>
+    <td id="td1"> Birdhdate </td>
+    <td id="td1"> Description </td>
+  </tr>
+  <tr *ngFor="let todo of tableTodo; let i = index;">
+    <td>{{i}}</td>
+    <td id="td1"> {{todo.Taskname}} </td>
+    <td id="td1"> {{todo.Birdhdate}} </td>
+    <td id="td1"> {{todo.Description}} </td>
+  </tr>
+</table>

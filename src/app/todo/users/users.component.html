@@ -1,0 +1,13 @@
+<form [formGroup]="formAjout">
+  <input type="text" formControlName="Email" placeholder="Email" value ="" id=""/><br>
+  <div *ngIf="formAjout.controls.Email.hasError('email')" style="color:red">Email is required</div>
+  <input type="text" formControlName="Password" placeholder="Password" value ="" id=""/><br>
+  <div *ngIf="formAjout.controls.Password.hasError('minlength')" style="color:red">password invalid</div>
+  
+  <button *ngIf="formAjout.controls.Password.hasError('minlength')&&formAjout.controls.Email.hasError('email')"disabled (click)="test()" style="background-color:rgb(8, 221, 19);">Connexion</button>
+
+  <button *ngIf="!formAjout.controls.Password.hasError('minlength')&&!formAjout.controls.Email.hasError('email')"  (click)="test()" style="background-color:rgb(8, 221, 19);">Connexion</button>
+ 
+</form>
+Email: {{formAjout.value.Email}}<br>
+Password: {{formAjout.value.Password}}<br>
